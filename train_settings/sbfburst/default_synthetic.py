@@ -13,7 +13,7 @@ from trainers.simple_trainer_autocast import SimpleTrainerAutocast
 
 
 def run(settings):
-    settings.batch_size = 1
+    settings.batch_size = 16
     settings.num_workers = 2
     settings.print_interval = 10
 
@@ -59,7 +59,7 @@ def run(settings):
                             stack_dim=0, batch_size=settings.batch_size, epoch_interval=5, pin_memory=True)
 
     net = SBFBurstRAW()
-    # net = torch.compile(net)
+    net = torch.compile(net)
 
     objective = {'rgb': PixelWiseMGLError(boundary_ignore=None), 'psnr': PSNR(boundary_ignore=40)}
 
