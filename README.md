@@ -33,7 +33,7 @@ Refer to [our paper](https://www.scitepress.org/PublishedPapers/2024/123483/) fo
   
 ## Pretrained Model  
   
-All the checkpoints including the SpyNet and PWCNet weights are located `pretrained_models/` folder.
+All the checkpoints including the SpyNet and PWCNet weights are located `pretrained_models/` folder. These files are in git-lfs format, so it's recommended to use git clone to properly get them.
   
 | Model                               |     PSNR      |  SSIM  | LPIPS  |  
 |:------------------------------------|:-------------:|:------:|:------:|  
