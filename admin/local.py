@@ -8,3 +8,4 @@ class EnvironmentSettings:
         self.zurichraw2rgb_dir = './_DATASETS/zurich-raw-to-rgb'  # Zurich RAW 2 RGB path
         self.synburstval_dir = './_DATASETS/SyntheticBurstVal'  # SyntheticBurst validation set path
         self.burstsr_dir = './_DATASETS/burstsr_cropped'  # BurstSR dataset path
+        self.rbsr_dir = './_DATASETS/RealBSR-drive'

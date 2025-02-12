@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import torch
 
 from actors.base_actor import BaseActor
 from models.loss.spatial_color_alignment import SpatialColorAlignment
@@ -84,6 +85,45 @@ class SBFBRealWorldActor(BaseActor):
         if 'psnr' in self.objective.keys():
             # detach, otherwise there is memory leak
             psnr = self.objective['psnr'](pred_warped_m.clone().detach(), gt, valid=valid)
+
+        loss = loss_rgb
+
+        stats = {'Loss/total': loss.item(),
+                 'Loss/rgb': loss_rgb.item(),
+                 'Loss/raw/rgb': loss_rgb_raw.item()}
+
+        if 'psnr' in self.objective.keys():
+            stats['Stat/psnr'] = psnr.item()
+
+        return loss, stats
+
+
+class SBFBRealBSRActor(BaseActor):
+    """Actor for training DBSR model on synthetic bursts """
+
+    def __init__(self, net, objective, loss_weight=None):
+        super().__init__(net, objective)
+        if loss_weight is None:
+            loss_weight = {'rgb': 1.0}
+        self.loss_weight = loss_weight
+
+    def __call__(self, data):
+        # Run network
+
+        if isinstance(data['frames'], list):
+            data['frames'] = torch.stack([torch.stack(b, 0) for b in data['frames']], 0).cuda()
+        else:
+            data['frames'] = data['frames'].cuda()
+        data['gt'] = data['gt'].cuda()
+
+        pred = self.net(data['frames'])
+
+        # Compute loss
+        loss_rgb_raw = self.objective['rgb'](pred, data['gt'])
+        loss_rgb = self.loss_weight['rgb'] * loss_rgb_raw
+
+        if 'psnr' in self.objective.keys():
+            psnr = self.objective['psnr'](pred.clone().detach(), data['gt'])
 
         loss = loss_rgb
 
