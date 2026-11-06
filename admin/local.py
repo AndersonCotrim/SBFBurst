@@ -9,3 +9,5 @@ class EnvironmentSettings:
         self.synburstval_dir = './_DATASETS/SyntheticBurstVal'  # SyntheticBurst validation set path
         self.burstsr_dir = './_DATASETS/burstsr_cropped'  # BurstSR dataset path
         self.rbsr_dir = './_DATASETS/RealBSR-drive'
+
+        self.raw56data = "./_DATASETS/raw-56-burst-super-resolution" # https://huggingface.co/datasets/andersoncotrim/raw-56-burst-super-resolution

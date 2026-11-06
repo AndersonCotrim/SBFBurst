@@ -15,6 +15,7 @@
 import utils.data_format_utils as df_utils
 from data.camera_pipeline import apply_gains, apply_ccm, apply_smoothstep, gamma_compression
 from dataset.burstsr_dataset import CanonImage
+from dataset.raw56_dataset import S23UltraRRGB
 
 
 class SimplePostProcess:
@@ -71,3 +72,10 @@ def process_canon(frame_gt, meta_info_burst):
                                                smoothstep=True,
                                                no_white_balance=False,
                                                external_norm_factor=None)
+
+def process_samsung(frame_gt, meta_info_burst):
+    return S23UltraRRGB.generate_processed_image(frame_gt.cpu(), meta_info_burst, return_np=True,
+                                                 gamma=True,
+                                                 smoothstep=True,
+                                                 no_white_balance=False,
+                                                 external_norm_factor=None)

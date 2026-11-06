@@ -37,6 +37,12 @@ class BaseTrainer:
 
         self.actor.to(self.device)
 
+    def set_optimizer_mode(self, training):
+        """Set the mode for optimizers that support train/eval state."""
+        mode = getattr(self.optimizer, 'train' if training else 'eval', None)
+        if callable(mode):
+            mode()
+
     def update_settings(self, settings=None):
         """Updates the trainer settings. Must be called to update internal settings."""
         if settings is not None:

@@ -1,8 +1,7 @@
 
 # SBFBurst: Simple Base Frame Guided Residual Network  
-  
-This repository contains the official implementation of our super-resolution work, presented at VISAPP 2024: ["Simple Base Frame Guided Residual Network for RAW Burst Image Super-Resolution"](https://www.scitepress.org/PublishedPapers/2024/123483/), as well as the corresponding journal paper: ["Enhanced residual network for burst image super-resolution using simple base frame guidance"](https://www.sciencedirect.com/science/article/pii/S0262885625000320).
 
+This repository contains the official implementation of our super-resolution work, presented at VISAPP 2024: ["Simple Base Frame Guided Residual Network for RAW Burst Image Super-Resolution"](https://www.scitepress.org/PublishedPapers/2024/123483/), as well as the corresponding journal paper: ["Enhanced residual network for burst image super-resolution using simple base frame guidance"](https://www.sciencedirect.com/science/article/pii/S0262885625000320). It also includes the SBFBurst training configurations used for the RAW-56 dataset experiments reported in our *Data in Brief* work: ["A real-world raw 56-frame burst dataset for 8× super-resolution"](https://dx.doi.org/10.2139/ssrn.7389288).
 > **Abstract:** *Burst super-resolution or multi-frame super-resolution (MFSR) has gained significant attention in recent years, particularly in the context of mobile photography. With modern handheld devices consistently increasing their processing power and the ability to capture multiple images even faster, the development of robust MFSR algorithms has become increasingly feasible. Furthermore, in contrast to extensively studied single-image super-resolution (SISR), burst super-resolution mitigates the ill-posed nature of reconstructing high-resolution images from low-resolution ones by merging information from multiple shifted frames. This research introduces a novel and effective deep learning approach, SBFBurst, designed to tackle this challenging problem. Our network takes multiple noisy RAW images as input and generates a denoised, super-resolved RGB image as output. We demonstrate that significant enhancements can be achieved in this problem by incorporating base frame-guided mechanisms through operations such as feature map concatenation and skip connections. Additionally, we highlight the significance of employing mosaicked convolution to enhance alignment, thus enhancing the overall network performance in super-resolution tasks. These relatively simple improvements underscore the competitiveness of our proposed method when compared to other state-of-the-art approaches.* 
   
 ## Architecture and some results
@@ -27,6 +26,7 @@ Refer to [our paper](https://www.scitepress.org/PublishedPapers/2024/123483/) fo
     -   **Synthetic:** [Zurich RAW to RGB Canon set](https://drive.google.com/file/d/12L0LYhG78zQBLkIDyFNE5J6fIH02NUgz/view?usp=drive_link), [Zurich RAW to RGB Canon set 2](https://drive.google.com/file/d/11Gj5mB9_A2859E_AOtkYpr2wWvhB41gF/view?usp=sharing) and [SyntheticBurst validation set](https://drive.google.com/file/d/1DHu3-_tGSc_8Wwwu6sHFaPtmd9ymd0rZ/view?usp=drive_link)
     -   **BurstSR:** [BurstSR dataset (cropped)](https://drive.google.com/drive/folders/1A8FytFrYP-y7pZZhfFxVRzEPwcKl-Cp7?usp=drive_link)
     -   **RealBSR:** [Cropped RealBSR-RGB and Cropped RealBSR-RAW](https://drive.google.com/drive/folders/1d4FOmRs0cKxWLPCsH-x7apVfsRJMKSJ4?usp=sharing)
+    -   **RAW-56:** [RAW-56 Burst Super-Resolution Dataset (Hugging Face)](https://huggingface.co/datasets/andersoncotrim/raw-56-burst-super-resolution), used for the *Data in Brief* experiments.
 
 3. Update the paths in `local.py` according to your local environment. The environment setting file [admin/local.py](admin/local.py) contains the paths for pretrained networks, datasets, etc.
 
@@ -58,7 +58,11 @@ python run_test_burstsr.py
 ```python
 python run_test_realbsr.py
 ```
-  
+
+### Raw56Dataset testing
+```python
+python run_test_exp_raw56.py
+```
   
 ## Training  
 
@@ -77,6 +81,21 @@ python run_training.py sbfburst default_burstsr
 python run_training.py sbfburst default_realbsr
 ```  
 
+### Raw56Dataset training
+
+The RAW-56 experiments use two SBFBurstRAW training configurations: one with 14 frames and one with all 56 frames. 
+
+**14-frame training:**
+
+```bash
+python run_training.py sbfburst raw56_14frames
+```
+
+**All frames (56-frame) training:**
+
+```bash
+python run_training.py sbfburst raw56_allframes
+```  
 
 ## Citations
 
@@ -107,6 +126,9 @@ If our code contributes to your research or projects, please consider citing our
    author = {Anderson Nogueira Cotrim and Gerson Barbosa and Cid Adinam Nogueira Santos and Helio Pedrini},
 }
 ```
+
+Cotrim, A. N., Engler, C., Barbosa, G., Santos, C. A. N., & Pedrini, H. (2026). A real-world raw 56-frame burst dataset for 8× super-resolution. SSRN. https://doi.org/10.2139/ssrn.7389288
+
 
 ## Acknowledgement
 

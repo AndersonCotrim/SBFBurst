@@ -62,6 +62,7 @@ class SimpleTrainerAutocast(BaseTrainer):
         """Do a cycle of training or validation."""
 
         self.actor.train(loader.training)
+        self.set_optimizer_mode(loader.training)
         torch.set_grad_enabled(loader.training)
 
         self._init_timing()
