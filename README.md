@@ -1,4 +1,3 @@
-
 # SBFBurst: Simple Base Frame Guided Residual Network  
 
 This repository contains the official implementation of our super-resolution work, presented at VISAPP 2024: ["Simple Base Frame Guided Residual Network for RAW Burst Image Super-Resolution"](https://www.scitepress.org/PublishedPapers/2024/123483/), as well as the corresponding journal paper: ["Enhanced residual network for burst image super-resolution using simple base frame guidance"](https://www.sciencedirect.com/science/article/pii/S0262885625000320). It also includes the SBFBurst training configurations used for the RAW-56 dataset experiments reported in our *Data in Brief* work: ["A real-world raw 56-frame burst dataset for 8× super-resolution"](https://dx.doi.org/10.2139/ssrn.7389288).
@@ -97,43 +96,28 @@ python run_training.py sbfburst raw56_14frames
 python run_training.py sbfburst raw56_allframes
 ```  
 
-## Citations
+## Related Resources
 
+- **Dataset:** [Hugging Face](https://huggingface.co/datasets/andersoncotrim/raw-56-burst-super-resolution) ([DOI](https://doi.org/10.57967/hf/10146))
+- **Capture:** [raw56-capture](https://github.com/AndersonCotrim/raw56-capture) — Android RAW burst acquisition.
+- **Preprocessing:** [raw56-preprocessing](https://github.com/AndersonCotrim/raw56-preprocessing) — DNG processing and dataset generation.
 
-If our code contributes to your research or projects, please consider citing our paper using the following BibTeX reference:
+## Citation
 
-```
-@conference{cotrim2024,  
-	author={Anderson Cotrim and Gerson Barbosa and Cid Santos and Helio Pedrini},  
-	title={Simple Base Frame Guided Residual Network for RAW Burst Image Super-Resolution},  
-	booktitle={Proceedings of the 19th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications - Volume 3: VISAPP},  
-	year={2024},  
-	pages={77-87},  
-	publisher={SciTePress},  
-	organization={INSTICC},  
-	doi={10.5220/0012348300003660},  
-	isbn={978-989-758-679-8},  
-}
+Please cite the corresponding publications when using the code or RAW-56 experiments:
 
-@article{cotrim2025,
-   title = {Enhanced residual network for burst image super-resolution using simple base frame guidance},
-   journal = {Image and Vision Computing},
-   pages = {105444},
-   year = {2025},
-   issn = {0262-8856},
-   doi = {https://doi.org/10.1016/j.imavis.2025.105444},
-   url = {https://www.sciencedirect.com/science/article/pii/S0262885625000320},
-   author = {Anderson Nogueira Cotrim and Gerson Barbosa and Cid Adinam Nogueira Santos and Helio Pedrini},
-}
-```
+- Cotrim et al. (2024). *Simple Base Frame Guided Residual Network for RAW Burst Image Super-Resolution*. VISAPP. [DOI](https://doi.org/10.5220/0012348300003660).
+- Cotrim et al. (2025). *Enhanced residual network for burst image super-resolution using simple base frame guidance*. Image and Vision Computing. [DOI](https://doi.org/10.1016/j.imavis.2025.105444).
+- Cotrim et al. (2026). *A real-world raw 56-frame burst dataset for 8× super-resolution*. SSRN. [DOI](https://doi.org/10.2139/ssrn.7389288).
 
-Cotrim, A. N., Engler, C., Barbosa, G., Santos, C. A. N., & Pedrini, H. (2026). A real-world raw 56-frame burst dataset for 8× super-resolution. SSRN. https://doi.org/10.2139/ssrn.7389288
-
-
-## Acknowledgement
+## Acknowledgements
 
 The training and testing codes are based on [Deep-Burst-SR](https://github.com/goutamgmb/deep-burst-sr), [BipNet](https://github.com/akshaydudhane16/BIPNet/tree/main), [FBANet](https://github.com/yjsunnn/FBANet) and [BasicVSR_PlusPlus](https://github.com/ckkelvinchan/BasicVSR_PlusPlus).
 
 ## Contact  
 
 My email is ander.cotrim@gmail.com. Please feel free to contact me regarding anything related to the paper. I'm also glad to discuss any topic related to Super-Resolution!
+
+## License
+
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [LICENSE](LICENSE) for details and third-party terms.
